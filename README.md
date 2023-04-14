@@ -8,7 +8,7 @@
 <h3>Requisitos:</h3>
 <ol><li>Utilização do padrão MVC (Model-View-Control) </li>
 <li>Utilização dos verbos HTTP padrão REST</li>
-<li>Utilizar todas operações do CRUD</li>
+<li>Utilizar operações básicas do CRUD</li>
 <li>Utilizar o padrão DAO</li>
 <li>Utilização de async/await para operações no banco (DAO)</li>
 </ol>

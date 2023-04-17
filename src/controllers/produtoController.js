@@ -1,65 +1,66 @@
-import ContentsDAO from "../DAO/ContentsDAO.js"
+import ContentsDAO from "../DAO/produtoDAO.js";
+import produto from "../models/pedido";
 
-class contentsController {
-    static rotas(app) {
-        app.get('/funcionario', contentsController.listar)
-        app.post('/funcionario', contentsController.inserir)
-        app.delete('/funcionario/:id', contentsController.deletar)
-        app.put('/funcionario/:id', contentsController.atualizar)
+class produtoController {
+  static rotas(app) {
+    app.get("/produto", produtoController.listar);
+    app.post("/produto", produtoController.inserir);
+    app.delete("/produto/:id", produtoController.deletar);
+    app.put("/produto/:id", produtoController.atualizar);
+  }
+
+  static async listar(req, res) {
+    const produto = await produtoDAO.listar();
+
+    res.send(produto);
+  }
+
+  static async inserir(req, res) {
+    const produto = {
+      nome: req.body.nome,
+      sobrenome: req.body.sobrenome,
+      cpf: req.body.cpf,
+      telefone: req.body.telefone,
+      endereco: req.body.endereco,
+      unidade: req.body.unidade,
+    };
+
+    const result = await produtoDAO.inserir(produto);
+
+    if (result.erro) {
+      res.status(500).send(result);
     }
 
-    static async listar(req, res) {
-        const funcionario = await ContentsDAO.listar()
+    res.send(result);
+  }
+  static async deletar(req, res) {
+    const produto = await produtoDAO.deletar(req.params.id);
 
-        res.send(funcionario)
+    if (produto.erro) {
+      res.status(500).send("Erro ao deletar o registro");
     }
 
-    static async inserir(req, res) {
-        const funcionario = {
-            nome: req.body.nome,
-            sobrenome: req.body.sobrenome,
-            cpf: req.body.cpf,
-            telefone: req.body.telefone,
-            endereco: req.body.endereco,
-            unidade: req.body.unidade,
-        }
+    res.send({ mensagem: "Registro removido com sucesso" });
+  }
 
-        const result = await ContentsDAO.inserir(funcionario)
+  static async atualizar(req, res) {
+    const produto = {
+      nome: req.body.nome,
+      sobrenome: req.body.sobrenome,
+      cpf: req.body.cpf,
+      telefone: req.body.telefone,
+      endereco: req.body.endereco,
+      unidade: req.body.unidade,
+    };
 
-        if (result.erro) {
-            res.status(500).send(result)
-        }
+    const result = await produtoDAO.atualizar(req.params.id, produto);
 
-        res.send(result)
-    }
-    static async deletar(req, res) {
-        const funcionario = await ContentsDAO.deletar(req.params.id)
-
-        if (funcionario.erro) {
-            res.status(500).send('Erro ao deletar o registro')
-        }
-
-        res.send({ mensagem: 'Registro removido com sucesso' })
+    if (result.erro) {
+      res.status(500).send("Erro ao atualizar o registro");
     }
 
-    static async atualizar(req, res) {
-        const funcionario = {
-            nome: req.body.nome,
-            sobrenome: req.body.sobrenome,
-            cpf: req.body.cpf,
-            telefone: req.body.telefone,
-            endereco: req.body.endereco,
-            unidade: req.body.unidade,
-        }
-
-        const result = await ContentsDAO.atualizar(req.params.id, funcionario)
-
-        if (result.erro) {
-            res.status(500).send('Erro ao atualizar o registro')
-        }
-
-        res.send({ mensagem: 'Registro alterado com sucesso' })
-    }
+    res.send({ mensagem: "Registro alterado com sucesso" });
+  }
 }
 
-export default contentsController
+export default produtoController;

@@ -1,12 +1,12 @@
 import fornecedorDAO from "../DAO/fornecedorDAO.js";
-import fornecedor from "../models/fornecedor.js";
+import fornecedor from "../models/fornecedor";
 
-class fornecedorController{
+class fornecedorController {
   static rotas(app) {
-    app.get("/fornecedor", fornecedorControllerlistar);
-    app.post("/fornecedor", fornecedorControllerinserir);
-    app.delete("/fornecedor/:id", fornecedorControllerdeletar);
-    app.put("/fornecedor/:id", fornecedorControlleratualizar);
+    app.get("/fornecedor", fornecedorController.listar);
+    app.post("/fornecedor", fornecedorController.inserir);
+    app.delete("/fornecedor/", fornecedorController.deletar);
+    app.put("/fornecedor/:id", fornecedorController.atualizar);
   }
 
   static async listar(req, res) {
@@ -63,4 +63,4 @@ class fornecedorController{
   }
 }
 
-export default fornecedorController
+export default fornecedorController;

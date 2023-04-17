@@ -1,9 +1,11 @@
+import ContentsDAO from "../DAO/ContentsDAO.js"
+
 class contentsController {
     static rotas(app) {
         app.get('/funcionario', contentsController.listar)
         app.post('/funcionario', contentsController.inserir)
-        app.delete('/funcionario', contentsController.deletar)
-        app.put('/funcionario', contentsController.atualizar)
+        app.delete('/funcionario/:id', contentsController.deletar)
+        app.put('/funcionario/:id', contentsController.atualizar)
     }
 
     static async listar(req, res) {

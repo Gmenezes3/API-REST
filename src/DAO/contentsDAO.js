@@ -15,7 +15,7 @@ class ContentsDAO {
     }
 
     static inserir(funcionario) {
-        const query = 'INSERT INTO funcionario (nome, sobrenome, cpf, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO funcionarios (nome, sobrenome, cpf, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
             db.run(query, [funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.unidade], function (err) {
                 if (err) {
@@ -33,7 +33,7 @@ class ContentsDAO {
         });
     }
     static deletar(id) {
-        const query = 'DELETE FROM funcionario WHERE id = ?';
+        const query = 'DELETE FROM funcionarios WHERE id = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [id], (err) => {
                 if (err) {
@@ -48,7 +48,7 @@ class ContentsDAO {
         });
     }
     static atualizar(id, funcionario) {
-        const query = 'UPDATE funcionario SET nome = ?, sobrenome = ?, cpf = ?, telefone = ?, endereco = ?, unidade =? WHERE id = ?';
+        const query = 'UPDATE funcionarios SET nome = ?, sobrenome = ?, cpf = ?, telefone = ?, endereco = ?, unidade =? WHERE id = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.unidade, id], (err) => {
                 if (err) {

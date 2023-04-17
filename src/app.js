@@ -15,4 +15,6 @@ app.use(express.json())
 // configurando o servidor para receber requisições qualquer origem
 app.use(cors())
 
+contentsController.rotas(app)
+
 export default app

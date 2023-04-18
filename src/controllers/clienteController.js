@@ -1,5 +1,4 @@
 import clienteDAO from "../DAO/clienteDAO.js";
-import cliente from "../models/cliente";
 
 class clienteController {
   static rotas(app) {
@@ -17,6 +16,7 @@ class clienteController {
 
   static async inserir(req, res) {
     const cliente = {
+      id: req.body.id,
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
       cpf: req.body.cpf,
@@ -45,6 +45,7 @@ class clienteController {
 
   static async atualizar(req, res) {
     const cliente = {
+      id: req.body.id,
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
       cpf: req.body.cpf,

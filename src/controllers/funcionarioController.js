@@ -1,5 +1,5 @@
 import funcionarioDAO from "../DAO/funcionarioDAO.js";
-import Funcionario from "../DAO/funcionarioDAO.js";
+
 
 class funcionarioController {
   static rotas(app) {
@@ -17,6 +17,7 @@ class funcionarioController {
 
   static async inserir(req, res) {
     const funcionario = {
+      id: req.body.nome,
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
       cpf: req.body.cpf,
@@ -45,6 +46,7 @@ class funcionarioController {
 
   static async atualizar(req, res) {
     const funcionario = {
+      id: req.body.nome,
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
       cpf: req.body.cpf,

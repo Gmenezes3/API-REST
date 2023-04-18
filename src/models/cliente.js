@@ -1,6 +1,7 @@
 class Cliente {
-    constructor(nome, cpf, unidade, endereco, telefone,  ){
-        this.nome= nome
+    constructor(id, nome, cpf, unidade, endereco, telefone,) {
+        this.id = id
+        this.nome = nome
         this.cpf = cpf,
         this.endereco = endereco,
         this.telefone = telefone,

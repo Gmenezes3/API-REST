@@ -1,5 +1,4 @@
 import unidadeDAO from "../DAO/unidadeDAO.js";
-import unidade from "../models/unidade";
 
 class unidadeController {
   static rotas(app) {
@@ -10,22 +9,21 @@ class unidadeController {
   }
 
   static async listar(req, res) {
-    const pedido = await ContentsDAO.listar();
+    const unidade = await unidadeDAO.listar();
 
-    res.send(pedido);
+    res.send(unidade);
   }
 
   static async inserir(req, res) {
-    const pedido = {
+    const unidade = {
+      id: req.body.id,
       nome: req.body.nome,
-      sobrenome: req.body.sobrenome,
-      cpf: req.body.cpf,
+      cnpj: req.body.cnpj,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.unidade,
     };
 
-    const result = await ContentsDAO.inserir(pedido);
+    const result = await ContentsDAO.inserir(unidade);
 
     if (result.erro) {
       res.status(500).send(result);
@@ -34,9 +32,9 @@ class unidadeController {
     res.send(result);
   }
   static async deletar(req, res) {
-    const pedido = await ContentsDAO.deletar(req.params.id);
+    const unidade = await unidadeDAO.deletar(req.params.id);
 
-    if (pedido.erro) {
+    if (unidade.erro) {
       res.status(500).send("Erro ao deletar o registro");
     }
 
@@ -44,7 +42,7 @@ class unidadeController {
   }
 
   static async atualizar(req, res) {
-    const pedido = {
+    const unidade = {
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
       cpf: req.body.cpf,
@@ -53,7 +51,7 @@ class unidadeController {
       unidade: req.body.unidade,
     };
 
-    const result = await ContentsDAO.atualizar(req.params.id, pedido);
+    const result = await ContentsDAO.atualizar(req.params.id, unidade);
 
     if (result.erro) {
       res.status(500).send("Erro ao atualizar o registro");

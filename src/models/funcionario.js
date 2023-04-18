@@ -1,5 +1,6 @@
 class Funcionario {
-    constructor(nome, sobrenome, cpf, telefone, endereco, unidade ){
+    constructor(id, nome, sobrenome, cpf, telefone, endereco, unidade ){
+        this.id = id,
         this.nome = nome,
         this.sobrenome = sobrenome
         this.cpf = cpf,

@@ -2,10 +2,10 @@ import unidadeDAO from "../DAO/unidadeDAO.js";
 
 class unidadeController {
   static rotas(app) {
-    app.get("/pedido", unidadeController.listar);
-    app.post("/pedido", unidadeController.inserir);
-    app.delete("/pedido/:id", unidadeController.deletar);
-    app.put("/pedido/:id", unidadeController.atualizar);
+    app.get("/unidade", unidadeController.listar);
+    app.post("/unidade", unidadeController.inserir);
+    app.delete("/unidade/:id", unidadeController.deletar);
+    app.put("/unidade/:id", unidadeController.atualizar);
   }
 
   static async listar(req, res) {

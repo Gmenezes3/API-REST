@@ -1,5 +1,5 @@
-import ContentsDAO from "../DAO/pedidoDAO.js";
-import pedido from "../models/pedido";
+import pedidoDAO from "../DAO/pedidoDAO.js";
+
 
 class pedidoController {
   static rotas(app) {
@@ -17,12 +17,14 @@ class pedidoController {
 
   static async inserir(req, res) {
     const pedido = {
-      nome: req.body.nome,
-      sobrenome: req.body.sobrenome,
+      id: req.body.id,
+      cliente: req.body.cliente,
       cpf: req.body.cpf,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
       unidade: req.body.unidade,
+      itens: req.body.itens,
+      valor: req.body.valor
     };
 
     const result = await pedidoDAO.inserir(pedido);
@@ -45,12 +47,14 @@ class pedidoController {
 
   static async atualizar(req, res) {
     const pedido = {
-      nome: req.body.nome,
-      sobrenome: req.body.sobrenome,
+      id: req.body.id,
+      cliente: req.body.cliente,
       cpf: req.body.cpf,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
       unidade: req.body.unidade,
+      itens: req.body.itens,
+      valor: req.body.valor
     };
 
     const result = await pedidoDAO.atualizar(req.params.id, pedido);

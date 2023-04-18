@@ -1,5 +1,5 @@
-import ContentsDAO from "../DAO/produtoDAO.js";
-import produto from "../models/pedido";
+import produtoDAO from "../DAO/produtoDAO.js";
+
 
 class produtoController {
   static rotas(app) {

@@ -1,5 +1,5 @@
 import fornecedorDAO from "../DAO/fornecedorDAO.js";
-import fornecedor from "../models/fornecedor";
+
 
 class fornecedorController {
   static rotas(app) {
@@ -17,9 +17,10 @@ class fornecedorController {
 
   static async inserir(req, res) {
     const fornecedor = {
+      id: req.body.id,
       nome: req.body.nome,
-      sobrenome: req.body.sobrenome,
-      cpf: req.body.cpf,
+      produto: req.body.produto,
+      cnpj: req.body.cnpj,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
       unidade: req.body.unidade,
@@ -45,9 +46,9 @@ class fornecedorController {
 
   static async atualizar(req, res) {
     const fornecedor = {
+      id: req.body.id,
       nome: req.body.nome,
-      sobrenome: req.body.sobrenome,
-      cpf: req.body.cpf,
+      cnpj: req.body.cnpj,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
       unidade: req.body.unidade,

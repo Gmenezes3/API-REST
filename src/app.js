@@ -1,10 +1,5 @@
-import contentsController from './controllers/contentsController.js'
-
-contentsController.rotas(app)
-
-// importando os package
+// Importando o packages
 import express from 'express'
-import cors from 'cors'
 
 // instanciando o servidor
 const app = express()
@@ -12,9 +7,19 @@ const app = express()
 // configurando o servidor para receber requisições com o corpo no formato JSON
 app.use(express.json())
 
-// configurando o servidor para receber requisições qualquer origem
-app.use(cors())
+// importando os controllers
+import clienteController from './controllers/clienteController.js'
+import fornecedorController from './controllers/fornecedorController.js'
+import funcionarioController from './controllers/funcionarioController.js'
+import pedidoController from './controllers/pedidoController.js'
+import produtoController from './controllers/produtoController.js'
+import unidadeController from './controllers/unidadeController.js'
 
-contentsController.rotas(app)
+clienteController.rotas(app)
+fornecedorController.rotas(app)
+funcionarioController.rotas(app)
+pedidoController.rotas(app)
+produtoController.rotas(app)
+unidadeController.rotas(app)
 
 export default app

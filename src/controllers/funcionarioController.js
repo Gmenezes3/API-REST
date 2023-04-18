@@ -1,5 +1,5 @@
 import funcionarioDAO from "../DAO/funcionarioDAO.js";
-import funcionario from "../models/funcionario";
+import Funcionario from "../DAO/funcionarioDAO.js";
 
 class funcionarioController {
   static rotas(app) {

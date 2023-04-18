@@ -1,6 +1,6 @@
 import db from '../infra/db.js'
 
-class ContentsDAO {
+class funcionarioDAO {
     static listar() {
         const query = 'SELECT * FROM funcionarios';
         return new Promise((resolve, reject) => {
@@ -64,4 +64,4 @@ class ContentsDAO {
     }
 }
 
-export default ContentsDAO;
+export default funcionarioDAO;

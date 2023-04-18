@@ -1,8 +1,8 @@
 import db from '../infra/db.js'
 
-class ContentsDAO {
+class UnidadeDAO {
     static listar() {
-        const query = 'SELECT * FROM funcionarios';
+        const query = 'SELECT * FROM unidades';
         return new Promise((resolve, reject) => {
             db.all(query, (err, rows) => {
                 if (err) {
@@ -14,10 +14,10 @@ class ContentsDAO {
         });
     }
 
-    static inserir(funcionario) {
-        const query = 'INSERT INTO funcionarios (nome, sobrenome, cpf, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?)';
+    static inserir(unidade) {
+        const query = 'INSERT INTO unidades (nome, id, cnpj, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
-            db.run(query, [funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.unidade], function (err) {
+            db.run(query, [unidade.nome, unidade.id, unidade.cnpj, unidade.telefone, unidade.endereco, unidade.unidade], function (err) {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao inserir o registro',
@@ -33,7 +33,7 @@ class ContentsDAO {
         });
     }
     static deletar(id) {
-        const query = 'DELETE FROM funcionarios WHERE id = ?';
+        const query = 'DELETE FROM unidades WHERE id = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [id], (err) => {
                 if (err) {
@@ -47,10 +47,10 @@ class ContentsDAO {
             });
         });
     }
-    static atualizar(id, funcionario) {
-        const query = 'UPDATE funcionarios SET nome = ?, sobrenome = ?, cpf = ?, telefone = ?, endereco = ?, unidade =? WHERE id = ?';
+    static atualizar(id, unidade) {
+        const query = 'UPDATE unidades SET nome = ?, id = ?, cnpj = ?, telefone = ?, endereco = ?, unidade =? ';
         return new Promise((resolve, reject) => {
-            db.run(query, [funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.unidade, id], (err) => {
+            db.run(query, [unidade.nome, unidade.id, unidade.cnpj, unidade.telefone, unidade.endereco, unidade.unidade, ], (err) => {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao atualizar o registro',
@@ -64,4 +64,4 @@ class ContentsDAO {
     }
 }
 
-export default ContentsDAO;
+export default UnidadeDAO;

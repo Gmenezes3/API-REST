@@ -15,9 +15,9 @@ class fornecedorDAO {
     }
 
     static inserir(fornecedor) {
-        const query = 'INSERT INTO fornecedor (nome, sobrenome, cpf, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO fornecedor (id, nome, cnpj, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
-            db.run(query, [fornecedor.nome, fornecedor.sobrenome, fornecedor.cpf, fornecedor.telefone, fornecedor.endereco, fornecedor.unidade], function (err) {
+            db.run(query, [fornecedor.id, fornecedor.nome, fornecedor.cnpj, fornecedor.telefone, fornecedor.endereco, fornecedor.unidade], function (err) {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao inserir o registro',
@@ -48,9 +48,9 @@ class fornecedorDAO {
         });
     }
     static atualizar(id, fornecedor) {
-        const query = 'UPDATE fornecedor SET nome = ?, sobrenome = ?, cpf = ?, telefone = ?, endereco = ?, unidade =? WHERE id = ?';
+        const query = 'UPDATE fornecedor SET id = ?, nome = ?, cnpj = ?, telefone = ?, endereco = ?, unidade =? WHERE id = ?';
         return new Promise((resolve, reject) => {
-            db.run(query, [fornecedor.nome, fornecedor.sobrenome, fornecedor.cpf, fornecedor.telefone, fornecedor.endereco, fornecedor.unidade, id], (err) => {
+            db.run(query, [fornecedor.id, fornecedor.nome, fornecedor.cnpj, fornecedor.telefone, fornecedor.endereco, fornecedor.unidade, id], (err) => {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao atualizar o registro',

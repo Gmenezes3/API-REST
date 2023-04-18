@@ -17,12 +17,12 @@ class produtoController {
 
   static async inserir(req, res) {
     const produto = {
+      id: req.body.id,
       nome: req.body.nome,
-      sobrenome: req.body.sobrenome,
-      cpf: req.body.cpf,
-      telefone: req.body.telefone,
-      endereco: req.body.endereco,
+      fornecedor: req.body.sobrenome,
       unidade: req.body.unidade,
+      quantidade: req.body.quantidade,
+      preco: req.body.preco
     };
 
     const result = await produtoDAO.inserir(produto);
@@ -45,12 +45,12 @@ class produtoController {
 
   static async atualizar(req, res) {
     const produto = {
+      id: req.body.id,
       nome: req.body.nome,
-      sobrenome: req.body.sobrenome,
-      cpf: req.body.cpf,
-      telefone: req.body.telefone,
-      endereco: req.body.endereco,
+      fornecedor: req.body.sobrenome,
       unidade: req.body.unidade,
+      quantidade: req.body.quantidade,
+      preco: req.body.preco
     };
 
     const result = await produtoDAO.atualizar(req.params.id, produto);

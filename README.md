@@ -36,7 +36,7 @@
 
 <h3>4º - Para visualização das rotas, utilize algum programa para à averiguação (Preferencialmente, use o <strong>POSTEMAN</strong>)
   
---  
+  
   ## 🤝 DESENVOLVEDORES
       Beatriz Melo
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&%22width=%2260&link=https:https://www.linkedin.com/in/lucascanella-dados/)](https://br.linkedin.com/in/beatrizmelop/)

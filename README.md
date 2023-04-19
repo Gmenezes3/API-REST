@@ -61,3 +61,8 @@
     Matheus
  [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&%22width=%2260&link=https:https://www.linkedin.com/in/lucascanella-dados/)](https://www.linkedin.com/in/matheus-silva-mendo%C3%A7a-544940268/)
  [![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white%22width=%2260)](https://github.com/MatheusMendoca)
+
+
+    Philipe Almeida
+  [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&%22width=%2260&link=https:https://www.linkedin.com/in/lucascanella-dados/)](https://www.linkedin.com/in/philipe-almeida-0407361a4/)
+  [![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white%22width=%2260)](https://github.com/Kalled21)

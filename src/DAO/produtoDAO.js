@@ -15,9 +15,9 @@ class produtoDAO {
     }
 
     static inserir(produto) {
-        const query = 'INSERT INTO funcionarios (id, nome, fornecedor, unidade, quantidade, preco ) VALUES (?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO PRODUTOS (id_produto, nome, id_fornecedor, preco ) VALUES (?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
-            db.run(query, [produto.id, produto.nome, produto.fornecedor, produto.unidade, produto.quantidade, produto.preco], function (err) {
+            db.run(query, [produto.id_produto, produto.nome, produto.id_fornecedor, produto.preco], function (err) {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao inserir o registro',
@@ -33,7 +33,7 @@ class produtoDAO {
         });
     }
     static deletar(id) {
-        const query = 'DELETE FROM PRODUTOS WHERE id = ?';
+        const query = 'DELETE FROM PRODUTOS WHERE id_produto = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [id], (err) => {
                 if (err) {
@@ -48,9 +48,9 @@ class produtoDAO {
         });
     }
     static atualizar(id, produto) {
-        const query = 'UPDATE produtos SET nome = ?, fornecedor = ?, unidade = ?, quantidade = ?, preco =? WHERE id = ?';
+        const query = 'UPDATE produtos SET nome = ?, id_fornecedor = ?, preco = ? WHERE id_produto = ?';
         return new Promise((resolve, reject) => {
-            db.run(query, [produto.id, produto.nome, produto.fornecedor, produto.unidade, produto.quantidade, produto.preco, id], (err) => {
+            db.run(query, [produto.nome, produto.id_fornecedor, produto.preco, id], (err) => {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao atualizar o registro',

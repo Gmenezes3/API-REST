@@ -19,7 +19,7 @@ class produtoController {
     const produto = {
       id: req.body.id,
       nome: req.body.nome,
-      fornecedor: req.body.sobrenome,
+      fornecedor: req.body.fornecedor,
       unidade: req.body.unidade,
       quantidade: req.body.quantidade,
       preco: req.body.preco
@@ -47,7 +47,7 @@ class produtoController {
     const produto = {
       id: req.body.id,
       nome: req.body.nome,
-      fornecedor: req.body.sobrenome,
+      fornecedor: req.body.fornecedor,
       unidade: req.body.unidade,
       quantidade: req.body.quantidade,
       preco: req.body.preco

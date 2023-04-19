@@ -15,9 +15,9 @@ class UnidadeDAO {
     }
 
     static inserir(unidade) {
-        const query = 'INSERT INTO unidades (nome, id, cnpj, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO unidades (id_unidade, unidade, cnpj, telefone, endereco) VALUES (?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
-            db.run(query, [unidade.nome, unidade.id, unidade.cnpj, unidade.telefone, unidade.endereco, unidade.unidade], function (err) {
+            db.run(query, [unidade.id_unidade, unidade.unidade, unidade.cnpj, unidade.telefone, unidade.endereco], function (err) {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao inserir o registro',
@@ -32,8 +32,9 @@ class UnidadeDAO {
             });
         });
     }
+
     static deletar(id) {
-        const query = 'DELETE FROM unidades WHERE id = ?';
+        const query = 'DELETE FROM unidades WHERE id_unidade = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [id], (err) => {
                 if (err) {
@@ -47,10 +48,11 @@ class UnidadeDAO {
             });
         });
     }
+
     static atualizar(id, unidade) {
-        const query = 'UPDATE unidades SET nome = ?, id = ?, cnpj = ?, telefone = ?, endereco = ?, unidade =? ';
+        const query = 'UPDATE unidades SET unidade = ?, cnpj = ?, telefone = ?, endereco = ? WHERE id_unidade = ?';
         return new Promise((resolve, reject) => {
-            db.run(query, [unidade.nome, unidade.id, unidade.cnpj, unidade.telefone, unidade.endereco, unidade.unidade, ], (err) => {
+            db.run(query, [unidade.unidade, unidade.cnpj, unidade.telefone, unidade.endereco, id], (err) => {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao atualizar o registro',

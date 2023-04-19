@@ -5,7 +5,7 @@ class fornecedorController {
   static rotas(app) {
     app.get("/fornecedor", fornecedorController.listar);
     app.post("/fornecedor", fornecedorController.inserir);
-    app.delete("/fornecedor/", fornecedorController.deletar);
+    app.delete("/fornecedor/:id", fornecedorController.deletar);
     app.put("/fornecedor/:id", fornecedorController.atualizar);
   }
 
@@ -17,13 +17,13 @@ class fornecedorController {
 
   static async inserir(req, res) {
     const fornecedor = {
-      id: req.body.id,
+      id: req.body.id_fornecedor,
       nome: req.body.nome,
-      produto: req.body.produto,
+      produto: req.body.id_produto,
       cnpj: req.body.cnpj,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.unidade,
+      unidade: req.body.id_unidade
     };
 
     const result = await fornecedorDAO.inserir(fornecedor);
@@ -35,7 +35,7 @@ class fornecedorController {
     res.send(result);
   }
   static async deletar(req, res) {
-    const fornecedor = await fornecedorDAO.deletar(req.params.id);
+    const fornecedor = await fornecedorDAO.deletar(req.params.id_fornecedor);
 
     if (fornecedor.erro) {
       res.status(500).send("Erro ao deletar o registro");
@@ -46,15 +46,16 @@ class fornecedorController {
 
   static async atualizar(req, res) {
     const fornecedor = {
-      id: req.body.id,
+      id: req.body.id_fornecedor,
       nome: req.body.nome,
+      produto: req.body.id_produto,
       cnpj: req.body.cnpj,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.unidade,
+      unidade: req.body.id_unidade
     };
 
-    const result = await fornecedorDAO.atualizar(req.params.id, fornecedor);
+    const result = await fornecedorDAO.atualizar(req.params.id_fornecedor, fornecedor);
 
     if (result.erro) {
       res.status(500).send("Erro ao atualizar o registro");

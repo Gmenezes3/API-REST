@@ -7,7 +7,7 @@
 
 # BurguerCode 🍔
 
-Esse projeto foi desenvolvido para o case 2 do módulo final do curso de Desenvolvimento Web Fullstack "Programadores Carioca", idealizado pela prefeitura do estado do Rio de Janeiro em parceria com o SENAC e utilizando o método Resilia Educação.
+Esse projeto foi desenvolvido para o módulo final do curso de Desenvolvimento Web Fullstack "Programadores Carioca", idealizado pela prefeitura do estado do Rio de Janeiro em parceria com o SENAC e utilizando o método Resilia Educação.
 
 
 
@@ -44,3 +44,9 @@ Esse projeto foi desenvolvido para o case 2 do módulo final do curso de Desenvo
 <hr>
 
 <h3>4º - Para visualização das rotas, utilize algum programa para à averiguação (Preferencialmente, use o <strong>POSTEMAN</strong>)
+  
+  
+  ## 🛠 Para a construção do projeto, foram utilizadas as seguintes tecnologias
+![image](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![image](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)

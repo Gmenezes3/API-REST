@@ -48,5 +48,4 @@ Esse projeto foi desenvolvido para o módulo final do curso de Desenvolvimento W
   
   ## 🛠 Para a construção do projeto, foram utilizadas as seguintes tecnologias
 ![image](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![image](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)

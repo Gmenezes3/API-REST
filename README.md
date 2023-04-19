@@ -1,7 +1,16 @@
 <h1 align=center>Projeto em Grupo - 5º Módulo (Tecnologias server-side/back-end)</h1>
 <hr>
-
 <h1 align=center><li><mark>API REST</mark></li></h1>
+
+
+
+
+# BurguerCode 🍔
+
+Esse projeto foi desenvolvido para o case 2 do módulo final do curso de Desenvolvimento Web Fullstack "Programadores Carioca", idealizado pela prefeitura do estado do Rio de Janeiro em parceria com o SENAC e utilizando o método Resilia Educação.
+
+
+
 <h2>Objetivo:</h2>
 <p> O objetivo do projeto é criar uma API como um produto mínimo viável para este aplicativo. A partir deste ponto, deviamos escolher um tema para identificar suas entidades.
 

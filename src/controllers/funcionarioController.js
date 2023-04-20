@@ -17,7 +17,7 @@ class funcionarioController {
 
   static async inserir(req, res) {
     const funcionario = {
-      id: req.body.nome,
+      id: req.body.id,
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
       cpf: req.body.cpf,
@@ -46,7 +46,7 @@ class funcionarioController {
 
   static async atualizar(req, res) {
     const funcionario = {
-      id: req.body.nome,
+      id: req.body.id,
       nome: req.body.nome,
       sobrenome: req.body.sobrenome,
       cpf: req.body.cpf,

@@ -17,13 +17,13 @@ class unidadeController {
   static async inserir(req, res) {
     const unidade = {
       id: req.body.id,
-      nome: req.body.nome,
+      unidade: req.body.unidade,
       cnpj: req.body.cnpj,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
     };
 
-    const result = await ContentsDAO.inserir(unidade);
+    const result = await unidadeDAO.inserir(unidade);
 
     if (result.erro) {
       res.status(500).send(result);
@@ -31,6 +31,7 @@ class unidadeController {
 
     res.send(result);
   }
+
   static async deletar(req, res) {
     const unidade = await unidadeDAO.deletar(req.params.id);
 
@@ -43,15 +44,14 @@ class unidadeController {
 
   static async atualizar(req, res) {
     const unidade = {
-      nome: req.body.nome,
-      sobrenome: req.body.sobrenome,
-      cpf: req.body.cpf,
+      id: req.body.id,
+      unidade: req.body.unidade,
+      cnpj: req.body.cnpj,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.unidade,
     };
 
-    const result = await ContentsDAO.atualizar(req.params.id, unidade);
+    const result = await unidadeDAO.atualizar(req.params.id, unidade);
 
     if (result.erro) {
       res.status(500).send("Erro ao atualizar o registro");

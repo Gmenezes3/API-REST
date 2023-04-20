@@ -2,7 +2,7 @@ import db from '../infra/db.js'
 
 class fornecedorDAO {
     static listar() {
-        const query = 'SELECT * FROM fornecedor';
+        const query = 'SELECT * FROM fornecedores';
         return new Promise((resolve, reject) => {
             db.all(query, (err, rows) => {
                 if (err) {
@@ -15,9 +15,9 @@ class fornecedorDAO {
     }
 
     static inserir(fornecedor) {
-        const query = 'INSERT INTO fornecedor (id, nome, cnpj, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO fornecedores (id_fornecedor, nome, id_produto, cnpj, telefone, endereco, id_unidade) VALUES (?, ?, ?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
-            db.run(query, [fornecedor.id, fornecedor.nome, fornecedor.cnpj, fornecedor.telefone, fornecedor.endereco, fornecedor.unidade], function (err) {
+            db.run(query, [fornecedor.id_fornecedor, fornecedor.nome, fornecedor.id_produto, fornecedor.cnpj, fornecedor.telefone, fornecedor.endereco, fornecedor.id_unidade], function (err) {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao inserir o registro',
@@ -33,7 +33,7 @@ class fornecedorDAO {
         });
     }
     static deletar(id) {
-        const query = 'DELETE FROM fornecedor WHERE id = ?';
+        const query = 'DELETE FROM fornecedores WHERE id_fornecedor = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [id], (err) => {
                 if (err) {
@@ -48,9 +48,9 @@ class fornecedorDAO {
         });
     }
     static atualizar(id, fornecedor) {
-        const query = 'UPDATE fornecedor SET id = ?, nome = ?, cnpj = ?, telefone = ?, endereco = ?, unidade =? WHERE id = ?';
+        const query = 'UPDATE fornecedores SET nome = ?, id_produto = ?, cnpj = ?, telefone = ?, endereco = ?, id_unidade = ? WHERE id_fornecedor = ?';
         return new Promise((resolve, reject) => {
-            db.run(query, [fornecedor.id, fornecedor.nome, fornecedor.cnpj, fornecedor.telefone, fornecedor.endereco, fornecedor.unidade, id], (err) => {
+            db.run(query, [fornecedor.nome, fornecedor.id_produto, fornecedor.cnpj, fornecedor.telefone, fornecedor.endereco, fornecedor.id_unidade, id], (err) => {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao atualizar o registro',

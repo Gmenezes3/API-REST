@@ -2,7 +2,7 @@ import db from '../infra/db.js'
 
 class pedidoDAO {
     static listar() {
-        const query = 'SELECT * FROM pedido';
+        const query = 'SELECT * FROM PEDIDOS';
         return new Promise((resolve, reject) => {
             db.all(query, (err, rows) => {
                 if (err) {
@@ -15,9 +15,9 @@ class pedidoDAO {
     }
 
     static inserir(pedido) {
-        const query = 'INSERT INTO pedido (id, cliente, cpf, valor, endereco, unidade,itens) VALUES (?, ?, ?, ?, ?, ?,?)';
+        const query = 'INSERT INTO PEDIDOS (id_pedido, id_cliente, itens, valor) VALUES (?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
-            db.run(query, [pedido.id, pedido.cliente, pedido.cpf, pedido.valor, pedido.endereco, pedido.unidade, pedido.itens], function (err) {
+            db.run(query, [pedido.id_pedido, pedido.id_cliente, pedido.itens, pedido.valor], function (err) {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao inserir o registro',
@@ -33,7 +33,7 @@ class pedidoDAO {
         });
     }
     static deletar(id) {
-        const query = 'DELETE FROM pedido WHERE id = ?';
+        const query = 'DELETE FROM PEDIDOS WHERE id_pedido = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [id], (err) => {
                 if (err) {
@@ -48,9 +48,9 @@ class pedidoDAO {
         });
     }
     static atualizar(id, pedido) {
-        const query = 'UPDATE pedido SET id = ?, cliente = ?, cpf = ?, valor = ?, endereco = ?, unidade =? itens = ?,  ';
+        const query = 'UPDATE PEDIDOS SET id_cliente = ?, itens = ?, valor = ? WHERE id_pedido = ?';
         return new Promise((resolve, reject) => {
-            db.run(query, [pedido.id, pedido.cliente, pedido.cpf, pedido.valor, pedido.endereco, pedido.unidade, pedido.itens], (err) => {
+            db.run(query, [pedido.id_cliente, pedido.itens, pedido.valor, id], (err) => {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao atualizar o registro',

@@ -1,11 +1,11 @@
 class Unidade{
-    constructor(id, nome, endereco, cnpj, telefone,unidades){
+    constructor(id, endereco, cnpj, telefone, unidade){
         this.id = id,
-        this.nome = nome,
-        this.unidades = unidades,
+        this.unidade = unidade,
         this.endereco = endereco,
         this.cnpj = cnpj,
         this.telefone = telefone
+        this.funcionario = funcionario
     }
 }
 

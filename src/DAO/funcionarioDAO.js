@@ -2,7 +2,7 @@ import db from '../infra/db.js'
 
 class funcionarioDAO {
     static listar() {
-        const query = 'SELECT * FROM funcionarios';
+        const query = 'SELECT * FROM FUNCIONARIOS';
         return new Promise((resolve, reject) => {
             db.all(query, (err, rows) => {
                 if (err) {
@@ -15,9 +15,9 @@ class funcionarioDAO {
     }
 
     static inserir(funcionario) {
-        const query = 'INSERT INTO funcionarios (nome, sobrenome, cpf, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO funcionarios (id_funcionario, nome, sobrenome, cpf, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
-            db.run(query, [funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.unidade], function (err) {
+            db.run(query, [funcionario.id_funcionario, funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.unidade], function (err) {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao inserir o registro',
@@ -33,7 +33,7 @@ class funcionarioDAO {
         });
     }
     static deletar(id) {
-        const query = 'DELETE FROM funcionarios WHERE id = ?';
+        const query = 'DELETE FROM funcionarios WHERE id_funcionario = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [id], (err) => {
                 if (err) {
@@ -48,7 +48,7 @@ class funcionarioDAO {
         });
     }
     static atualizar(id, funcionario) {
-        const query = 'UPDATE funcionarios SET nome = ?, sobrenome = ?, cpf = ?, telefone = ?, endereco = ?, unidade =? WHERE id = ?';
+        const query = 'UPDATE FUNCIONARIOS SET nome = ?, sobrenome = ?, cpf = ?, telefone = ?, endereco = ?, unidade =? WHERE id_funcionario = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.unidade, id], (err) => {
                 if (err) {

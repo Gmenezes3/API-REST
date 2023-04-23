@@ -19,20 +19,21 @@ class produtoController {
     const produto = {
       id: req.body.id,
       nome: req.body.nome,
-      fornecedor: req.body.fornecedor,
-      unidade: req.body.unidade,
-      quantidade: req.body.quantidade,
+      id_fornecedor: req.body.id_fornecedor,
       preco: req.body.preco
     };
 
-    const result = await produtoDAO.inserir(produto);
+    let result;
+    try {
+      result = await produtoDAO.inserir(produto);
 
-    if (result.erro) {
+    } catch (error) {
       res.status(500).send(result);
+      return
     }
-
     res.send(result);
   }
+
   static async deletar(req, res) {
     const produto = await produtoDAO.deletar(req.params.id);
 
@@ -44,12 +45,18 @@ class produtoController {
   }
 
   static async atualizar(req, res) {
+    // verifica se o produto existe antes de atualizá-lo
+    const produtoExistente = await produtoDAO.buscarPorID(req.params.id);
+    
+    if (!produtoExistente) {
+      res.status(404).send({ mensagem: "Produto não encontrado" });
+      return;
+
+    }
     const produto = {
       id: req.body.id,
       nome: req.body.nome,
-      fornecedor: req.body.fornecedor,
-      unidade: req.body.unidade,
-      quantidade: req.body.quantidade,
+      id_fornecedor: req.body.id_fornecedor,
       preco: req.body.preco
     };
 

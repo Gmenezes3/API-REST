@@ -22,9 +22,9 @@ class clienteController {
       cpf: req.body.cpf,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.unidade
+      id_unidade: req.body.id_unidade
     };
-    
+
     let result;
     try {
       result = await clienteDAO.inserir(cliente);
@@ -37,7 +37,7 @@ class clienteController {
   }
 
   static async deletar(req, res) {
-    const cliente = await clienteDAO.deletar(req.params.id_cliente);
+    const cliente = await clienteDAO.deletar(req.params.id);
 
     if (cliente.erro) {
       res.status(500).send("Erro ao deletar o registro");
@@ -45,25 +45,34 @@ class clienteController {
 
     res.send({ mensagem: "Registro removido com sucesso" });
   }
-
+  
   static async atualizar(req, res) {
+    // verifica se o cliente existe antes de atualizá-lo
+    const clienteExistente = await clienteDAO.buscarPorID(req.params.id);
+    if (!clienteExistente) {
+      res.status(404).send({ mensagem: "Cliente não encontrado" });
+      return;
+    }
+
     const cliente = {
-      id: req.body.id_cliente,
+      id: req.body.id,
       nome: req.body.nome,
       cpf: req.body.cpf,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.id_unidade
+      id_unidade: req.body.id_unidade
     };
 
-    const result = await clienteDAO.atualizar(req.params.id_cliente, cliente);
+    const result = await clienteDAO.atualizar(req.params.id, cliente);
 
     if (result.erro) {
       res.status(500).send("Erro ao atualizar o registro");
+      return;
     }
 
     res.send({ mensagem: "Registro alterado com sucesso" });
   }
 }
+
 
 export default clienteController;

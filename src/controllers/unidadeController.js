@@ -23,12 +23,14 @@ class unidadeController {
       endereco: req.body.endereco,
     };
 
-    const result = await unidadeDAO.inserir(unidade);
+    let result;
+    try {
+      result = await unidadeDAO.inserir(unidade);
 
-    if (result.erro) {
+    } catch (error) {
       res.status(500).send(result);
+      return
     }
-
     res.send(result);
   }
 
@@ -43,6 +45,14 @@ class unidadeController {
   }
 
   static async atualizar(req, res) {
+      // verifica se o unidade existe antes de atualizá-lo
+      const unidadeExistente = await unidadeDAO.buscarPorID(req.params.id);
+     
+      if (!unidadeExistente) {
+        res.status(404).send({ mensagem: "Unidade não encontrada" });
+        return;
+      }
+
     const unidade = {
       id: req.body.id,
       unidade: req.body.unidade,

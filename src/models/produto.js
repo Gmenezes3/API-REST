@@ -1,10 +1,8 @@
 class Produto{
-    constructor(id, nome, fornecedor, unidade, quantidade, preco ){
+    constructor(id, nome, id_fornecedor, preco ){
         this.id = id,
         this.nome = nome,
-        this.fornecedor = fornecedor,
-        this.unidade = unidade,
-        this.quantidade = quantidade,
+        this.id_fornecedor = id_fornecedor,
         this.preco = preco
     }
 

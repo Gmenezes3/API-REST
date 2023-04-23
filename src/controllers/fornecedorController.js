@@ -17,25 +17,28 @@ class fornecedorController {
 
   static async inserir(req, res) {
     const fornecedor = {
-      id: req.body.id_fornecedor,
+      id: req.body.id,
       nome: req.body.nome,
-      produto: req.body.id_produto,
+      id_produto: req.body.id_produto,
       cnpj: req.body.cnpj,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.id_unidade
+      id_unidade: req.body.id_unidade
     };
 
-    const result = await fornecedorDAO.inserir(fornecedor);
+    let result;
+    try {
+      result = await fornecedorDAO.inserir(fornecedor);
 
-    if (result.erro) {
+    } catch (error) {
       res.status(500).send(result);
+      return
     }
-
     res.send(result);
   }
+
   static async deletar(req, res) {
-    const fornecedor = await fornecedorDAO.deletar(req.params.id_fornecedor);
+    const fornecedor = await fornecedorDAO.deletar(req.params.id);
 
     if (fornecedor.erro) {
       res.status(500).send("Erro ao deletar o registro");
@@ -45,17 +48,23 @@ class fornecedorController {
   }
 
   static async atualizar(req, res) {
+    // verifica se o fornecedor existe antes de atualizá-lo
+    const fornecedorExistente = await fornecedorDAO.buscarPorID(req.params.id);
+    if (!fornecedorExistente) {
+      res.status(404).send({ mensagem: "Fornecedor não encontrado" });
+      return;
+    }
     const fornecedor = {
-      id: req.body.id_fornecedor,
+      id: req.body.id,
       nome: req.body.nome,
-      produto: req.body.id_produto,
+      id_produto: req.body.id_produto,
       cnpj: req.body.cnpj,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.id_unidade
+      id_unidade: req.body.id_unidade
     };
 
-    const result = await fornecedorDAO.atualizar(req.params.id_fornecedor, fornecedor);
+    const result = await fornecedorDAO.atualizar(req.params.id, fornecedor);
 
     if (result.erro) {
       res.status(500).send("Erro ao atualizar o registro");

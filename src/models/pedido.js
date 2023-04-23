@@ -1,10 +1,7 @@
 class Pedido {
-    constructor(id, cliente, endereco, cpf, unidade, valor, itens ){
+    constructor(id, id_cliente, valor, itens ){
         this.id = id,
-        this.cliente = cliente,
-        this.cpf = cpf,
-        this.endereco = endereco,
-        this.unidade = unidade,
+        this.id_cliente = id_cliente,
         this.itens = itens,
         this.valor = valor
     }

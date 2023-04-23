@@ -18,23 +18,22 @@ class pedidoController {
   static async inserir(req, res) {
     const pedido = {
       id: req.body.id,
-      cliente: req.body.cliente,
-      cpf: req.body.cpf,
-      telefone: req.body.telefone,
-      endereco: req.body.endereco,
-      unidade: req.body.unidade,
+      id_cliente: req.body.id_cliente,
       itens: req.body.itens,
       valor: req.body.valor
     };
 
-    const result = await pedidoDAO.inserir(pedido);
+    let result;
+    try {
+      result = await pedidoDAO.inserir(pedido);
 
-    if (result.erro) {
+    } catch (error) {
       res.status(500).send(result);
+      return
     }
-
     res.send(result);
   }
+
   static async deletar(req, res) {
     const pedido = await pedidoDAO.deletar(req.params.id);
 
@@ -46,13 +45,16 @@ class pedidoController {
   }
 
   static async atualizar(req, res) {
+     // verifica se o pedido existe antes de atualizá-lo
+     const pedidoExistente = await pedidoDAO.buscarPorID(req.params.id);
+     
+     if (!pedidoExistente) {
+       res.status(404).send({ mensagem: "Pedido não encontrado" });
+       return;
+     }
     const pedido = {
       id: req.body.id,
-      cliente: req.body.cliente,
-      cpf: req.body.cpf,
-      telefone: req.body.telefone,
-      endereco: req.body.endereco,
-      unidade: req.body.unidade,
+      id_cliente: req.body.id_cliente,
       itens: req.body.itens,
       valor: req.body.valor
     };

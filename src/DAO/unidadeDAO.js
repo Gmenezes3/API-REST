@@ -2,7 +2,7 @@ import db from '../infra/db.js'
 
 class UnidadeDAO {
     static listar() {
-        const query = 'SELECT * FROM unidades';
+        const query = 'SELECT * FROM UNIDADES';
         return new Promise((resolve, reject) => {
             db.all(query, (err, rows) => {
                 if (err) {
@@ -14,8 +14,20 @@ class UnidadeDAO {
         });
     }
 
+    static buscarPorID(id) {
+        const query = "SELECT * FROM UNIDADES WHERE id_unidade = ?";
+        return new Promise((resolve, reject) => {
+          db.get(query, [id], (err, row) => {
+            if (err) {
+              reject(false);
+            }
+            resolve(row);
+          });
+        });
+      }
+
     static inserir(unidade) {
-        const query = 'INSERT INTO unidades (id_unidade, unidade, cnpj, telefone, endereco) VALUES (?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO UNIDADES (id_unidade, unidade, cnpj, telefone, endereco) VALUES (?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
             db.run(query, [unidade.id_unidade, unidade.unidade, unidade.cnpj, unidade.telefone, unidade.endereco], function (err) {
                 if (err) {
@@ -34,7 +46,7 @@ class UnidadeDAO {
     }
 
     static deletar(id) {
-        const query = 'DELETE FROM unidades WHERE id_unidade = ?';
+        const query = 'DELETE FROM UNIDADES WHERE id_unidade = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [id], (err) => {
                 if (err) {
@@ -50,7 +62,7 @@ class UnidadeDAO {
     }
 
     static atualizar(id, unidade) {
-        const query = 'UPDATE unidades SET unidade = ?, cnpj = ?, telefone = ?, endereco = ? WHERE id_unidade = ?';
+        const query = 'UPDATE UNIDADES SET unidade = ?, cnpj = ?, telefone = ?, endereco = ? WHERE id_unidade = ?';
         return new Promise((resolve, reject) => {
             db.run(query, [unidade.unidade, unidade.cnpj, unidade.telefone, unidade.endereco, id], (err) => {
                 if (err) {

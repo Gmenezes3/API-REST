@@ -14,6 +14,18 @@ class fornecedorDAO {
         });
     }
 
+    static buscarPorID(id) {
+        const query = "SELECT * FROM FORNECEDORES WHERE id_fornecedor = ?";
+        return new Promise((resolve, reject) => {
+          db.get(query, [id], (err, row) => {
+            if (err) {
+              reject(false);
+            }
+            resolve(row);
+          });
+        });
+      }
+
     static inserir(fornecedor) {
         const query = 'INSERT INTO fornecedores (id_fornecedor, nome, id_produto, cnpj, telefone, endereco, id_unidade) VALUES (?, ?, ?, ?, ?, ?, ?)';
         return new Promise((resolve, reject) => {

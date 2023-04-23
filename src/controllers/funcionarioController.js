@@ -23,17 +23,20 @@ class funcionarioController {
       cpf: req.body.cpf,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.unidade,
+      id_unidade: req.body.id_unidade,
     };
 
-    const result = await funcionarioDAO.inserir(funcionario);
+    let result;
+    try {
+      result = await funcionarioDAO.inserir(funcionario);
 
-    if (result.erro) {
+    } catch (error) {
       res.status(500).send(result);
+      return
     }
-
     res.send(result);
   }
+
   static async deletar(req, res) {
     const funcionario = await funcionarioDAO.deletar(req.params.id);
 
@@ -45,6 +48,12 @@ class funcionarioController {
   }
 
   static async atualizar(req, res) {
+    // verifica se o funcionario existe antes de atualizá-lo
+    const funcionarioExistente = await funcionarioDAO.buscarPorID(req.params.id);
+    if (!funcionarioExistente) {
+      res.status(404).send({ mensagem: "Funcionario não encontrado" });
+      return;
+    }
     const funcionario = {
       id: req.body.id,
       nome: req.body.nome,
@@ -52,7 +61,7 @@ class funcionarioController {
       cpf: req.body.cpf,
       telefone: req.body.telefone,
       endereco: req.body.endereco,
-      unidade: req.body.unidade,
+      id_unidade: req.body.id_unidade,
     };
 
     const result = await funcionarioDAO.atualizar(req.params.id, funcionario);

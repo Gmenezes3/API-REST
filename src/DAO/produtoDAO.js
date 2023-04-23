@@ -14,6 +14,19 @@ class produtoDAO {
         });
     }
 
+    
+    static buscarPorID(id) {
+        const query = "SELECT * FROM PRODUTOS WHERE id_produto = ?";
+        return new Promise((resolve, reject) => {
+          db.get(query, [id], (err, row) => {
+            if (err) {
+              reject(false);
+            }
+            resolve(row);
+          });
+        });
+      }
+
     static inserir(produto) {
         const query = 'INSERT INTO PRODUTOS (id_produto, nome, id_fornecedor, preco ) VALUES (?, ?, ?, ?)';
         return new Promise((resolve, reject) => {

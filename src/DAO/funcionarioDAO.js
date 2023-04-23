@@ -14,10 +14,22 @@ class funcionarioDAO {
         });
     }
 
-    static inserir(funcionario) {
-        const query = 'INSERT INTO funcionarios (id_funcionario, nome, sobrenome, cpf, telefone, endereco, unidade) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    static buscarPorID(id) {
+        const query = "SELECT * FROM FUNCIONARIOS WHERE id_funcionario = ?";
         return new Promise((resolve, reject) => {
-            db.run(query, [funcionario.id_funcionario, funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.unidade], function (err) {
+          db.get(query, [id], (err, row) => {
+            if (err) {
+              reject(false);
+            }
+            resolve(row);
+          });
+        });
+      }
+
+    static inserir(funcionario) {
+        const query = 'INSERT INTO funcionarios (id_funcionario, nome, sobrenome, cpf, telefone, endereco, id_unidade) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        return new Promise((resolve, reject) => {
+            db.run(query, [funcionario.id_funcionario, funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.id_unidade], function (err) {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao inserir o registro',
@@ -48,9 +60,9 @@ class funcionarioDAO {
         });
     }
     static atualizar(id, funcionario) {
-        const query = 'UPDATE FUNCIONARIOS SET nome = ?, sobrenome = ?, cpf = ?, telefone = ?, endereco = ?, unidade =? WHERE id_funcionario = ?';
+        const query = 'UPDATE FUNCIONARIOS SET nome = ?, sobrenome = ?, cpf = ?, telefone = ?, endereco = ?, id_unidade =? WHERE id_funcionario = ?';
         return new Promise((resolve, reject) => {
-            db.run(query, [funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.unidade, id], (err) => {
+            db.run(query, [funcionario.nome, funcionario.sobrenome, funcionario.cpf, funcionario.telefone, funcionario.endereco, funcionario.id_unidade, id], (err) => {
                 if (err) {
                     reject({
                         mensagem: 'Erro ao atualizar o registro',

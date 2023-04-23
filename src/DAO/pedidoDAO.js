@@ -14,6 +14,19 @@ class pedidoDAO {
         });
     }
 
+    
+    static buscarPorID(id) {
+        const query = "SELECT * FROM PEDIDOS WHERE id_pedido = ?";
+        return new Promise((resolve, reject) => {
+          db.get(query, [id], (err, row) => {
+            if (err) {
+              reject(false);
+            }
+            resolve(row);
+          });
+        });
+      }
+
     static inserir(pedido) {
         const query = 'INSERT INTO PEDIDOS (id_pedido, id_cliente, itens, valor) VALUES (?, ?, ?, ?)';
         return new Promise((resolve, reject) => {
